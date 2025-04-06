@@ -15,10 +15,10 @@ const getSecondPage = (page: string): JSX.Element | null => {
     const PageComponents: { [key: string]: JSX.Element } = {
         "Navigation": <NavigationView />,
         "Chrome": <iframe src="https://www.google.com/webhp?igu=1" className="w-full h-full" />,
-        "Netflix": <iframe src="https://fmovies2u.in/movies/" className="w-full h-full" />,
+        "Platzi": <iframe src="https://platzi.com" className="w-full h-full" />,
         "Spotify": <iframe src="https://honey-tyagi-spotify-clone.vercel.app/login/login.html" className="w-full h-full" />,
-        "Amazon": <iframe src="https://www.mercadolibre.com.ve/" className="w-full h-full" />,
-        "Youtube": <iframe src="https://www.dailymotion.com/co" className="w-full h-full" />,
+        "Mercado": <iframe src="https://www.mercadolibre.com.ve/" className="w-full h-full" />,
+        "Subway": <iframe src="https://www.minijuegos.com/juego/subway-surfers" className="w-full h-full" />,
         "Galeria": <Galery />,
         "Procesos": <ProcessList />,
         "Camara": <Camara />,
@@ -87,7 +87,7 @@ export default function Page() {
 
 function Home() {
     const style: CSSProperties & { [key: string]: string } = {
-        // "--bg-wallpaper": "url(https://img.asmedia.epimg.net/resizer/v2/NZTAJMVYTVHDJMOWYTEK3KKE6U.webp?auth=058fa8d2b79580189b58fd9d21735ad0c0d746352ae3bbc18185b915535e01c3&width=1472&height=1104&smart=true)"
+        "--bg-wallpaper": "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHDOksrwN7pDuGkNIgqdqVU4okmutHU4P9DA&s)"
     }
 
     return (
@@ -109,49 +109,49 @@ interface App {
 }
 const APPs: App[] = [
     {
+        name: "Camara",
+        urlIcon: "https://cdn-icons-png.flaticon.com/512/5904/5904483.png"
+
+    },
+    {
         name: "Whatsapp",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/733/733585.png"
+        urlIcon: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png"
     },
     {
         name: "Chrome",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/732/732200.png"
+        urlIcon: "https://i.ibb.co/7N1BjJkz/Google.png"
     },
     {
-        name: "Netflix",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/870/870910.png"
+        name: "Telefono",
+        urlIcon: "https://cdn-icons-png.flaticon.com/512/5356/5356411.png"
+    },
+    {
+        name: "Platzi",
+        urlIcon: "https://yt3.googleusercontent.com/jSVrx7B9DIXfx7-Mh16nzdqXcBFoa-FV3fgItxePwv17Dst-U-JuC3_TR6rLq0quRjJPpHy5RQ=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         name: "Spotify",
         urlIcon: "https://cdn-icons-png.flaticon.com/512/174/174872.png"
     },
     {
-        name: "Amazon",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/732/732217.png"
+        name: "Mercado",
+        urlIcon: "https://downloadr2.apkmirror.com/wp-content/uploads/2018/04/5adf688656e71.png"
     },
     {
-        name: "Youtube",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+        name: "Subway",
+        urlIcon: "https://img.utdstc.com/icon/590/0ed/5900ed3c1d60b6f8e108a233d11cf94c3636ecef9687f571767ebf7b6e2b0b74:200"
     },
     {
         "name": "Galeria",
-        "urlIcon": "https://static.vecteezy.com/system/resources/previews/042/712/634/non_2x/google-gallery-icon-logo-symbol-free-png.png"
+        "urlIcon": "https://cdn-icons-png.flaticon.com/512/336/336035.png"
     },
     {
         name: "Procesos",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/10239/10239999.png"
-    },
-    {
-        name: "Camara",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/1373/1373061.png"
-
-    },
-    {
-        name: "Telefono",
-        urlIcon: "https://cdn.iconscout.com/icon/free/png-256/free-apple-phone-icon-download-in-svg-png-gif-file-formats--logo-call-apps-pack-user-interface-icons-493154.png?f=webp&w=256"
+        urlIcon: "https://i.pinimg.com/originals/e0/6c/a5/e06ca5df539b7114e7a3bd054fc6a933.png"
     },
     {
         name: "Recorder",
-        urlIcon: "https://cdn-icons-png.flaticon.com/512/3817/3817556.png"
+        urlIcon: "https://cdn-icons-png.flaticon.com/512/3800/3800798.png"
     }
 ]
 

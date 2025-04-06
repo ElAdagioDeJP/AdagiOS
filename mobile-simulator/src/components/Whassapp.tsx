@@ -1,26 +1,44 @@
 import {Camera,Search,EllipsisVertical,MessageSquareTextIcon,MessageCircleDashed,Users2,Phone} from "lucide-react"
-import avatar from "@/assets/avatar.png"
+import avatar from "@/assets/avatar.jpg"
 import { memo } from "react";
 
 
 const Contacts = [
   {
     id:1,
-    name:"Henry lang",
-    lastMessage:`todo preparado`,
-    avatar:"https://github.com/hl-2002.png"
+    name:"Papi",
+    lastMessage:`Buenos tardes hijo, que tengas un excelente dia en la universidad`,
+    avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cJSfgyNlZnmW3sotglnpcwjTnzqIHrCa8Q&s"
   },
   {
     id:2,
-    name:"Luis Hernandez",
-    lastMessage:"Terminaste el proyecto?",
-    avatar:"https://github.com/time9683.png"
+    name:"Cami ૮꒰ ˶• ༝ •˶꒱ა ❤",
+    lastMessage:"Pudiste terminar el proyecto amor?",
+    avatar:"https://i.ibb.co/qL419qmY/Cami.jpg"
   },
   {
     id:3,
-    name:"Mario",
-    lastMessage:"recuerda lo de SO",
+    name:"Marco Polo UNI",
+    lastMessage:"pero pa eso uno estudia",
     avatar
+  },
+  {
+    id:4,
+    name:"JUEGOS DE TIROS 2025 🐦‍⬛ SAQUENME DE VENEZUELA 💀",
+    lastMessage:"JoseBM: Nicki Nicole, Si o No?",
+    avatar:"https://i.pinimg.com/736x/40/36/66/403666f55e717fcbafb1369f49a5d896.jpg"
+  },
+  {
+    id:5,
+    name:"los churros🐀",
+    lastMessage:"Albert: asjasjasjasj Literal",
+    avatar:"https://agencia.fapesp.br/files/post/50883.jpg"
+  },
+  {
+    id:6,
+    name:"COMPRA VENTA",
+    lastMessage:"Ani: Compro 150$ por Zelle",
+    avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6cdRHpb4YdtPwRcs6Z8eEb6qvp4LtfNUkdw&s"
   }
 ]
 

@@ -6,103 +6,105 @@ import wifiIcon from '../assets/wifi.webp';
 import useMovilStore from '@stores/movil';
 
 // Appending the navigator.connection interface (Thanks TS!)
-interface NavigatorNetworkInformation extends Navigator{
-  readonly connection?: NetworkInformation
+interface NavigatorNetworkInformation extends Navigator {
+  readonly connection?: NetworkInformation;
 }
 
-type Megabit = number
-type Millisecond = number
-type EffectiveConnectionType = '2g' | '3g' | '4g' | 'slow-2g'
+type Megabit = number;
+type Millisecond = number;
+type EffectiveConnectionType = '2g' | '3g' | '4g' | 'slow-2g';
 
 interface NetworkInformation extends EventTarget {
-  readonly effectiveType?: EffectiveConnectionType
-  readonly downlink?: Megabit
-  readonly rtt?: Millisecond
-  readonly saveData?: boolean
-  onchange?: EventListener
+  readonly effectiveType?: EffectiveConnectionType;
+  readonly downlink?: Megabit;
+  readonly rtt?: Millisecond;
+  readonly saveData?: boolean;
+  onchange?: EventListener;
 }
 
 type NetworkType = 'wifi' | 'cellular';
 
-const MemoDialog = memo(Dialog)
-
+const MemoDialog = memo(Dialog);
 
 export default function Network() {
-    const { networkStatus, setNetworkStatus } = useMovilStore()
+  const { networkStatus, setNetworkStatus } = useMovilStore();
+  const ref = useRef<HTMLDialogElement>(null);
 
-    const ref = useRef<HTMLDialogElement>(null);
+  // Network type is hardcoded for now, as the API ain't implemented in browsers yet
+  const type: NetworkType = 'wifi';
 
-    // Network type is hardcoded for now, as the API ain't implemented in browsers yet
-    const type: NetworkType = 'wifi';
-
-    // If there's a connection, then show the appropriate icon
-    const {icon,statusMsg} = useMemo(()=>{
+  // Determinar el ícono y mensaje de estado según la conexión
+  const { icon, statusMsg } = useMemo(() => {
     if (networkStatus === 'connected') {
-        if (type === 'wifi') {
-            return {icon:wifiIcon,statusMsg:'Conectado a la red Wi-Fi'}
-        } else {
-            const effectiveType = (navigator as NavigatorNetworkInformation).connection?.effectiveType ?? ''
-            return {icon:cellularIcon,statusMsg:`Conectado a la red celular (${effectiveType})`}
-        }
+      if (type === 'wifi') {
+        return {
+          icon: wifiIcon,
+          statusMsg: (
+            <div className="flex flex-col items-center">
+              <h2 className="text-2xl font-bold text-blue-600">¡Wi‑Fi Activado!</h2>
+              <p className="mt-2 text-lg text-blue-400">
+                Disfruta de una conexión ultrarrápida y estable.
+              </p>
+            </div>
+          )
+        };
+      } else {
+        const effectiveType =
+          (navigator as NavigatorNetworkInformation).connection?.effectiveType ?? '';
+        return { icon: cellularIcon, statusMsg: `Conectado a la red celular (${effectiveType})` };
+      }
     } else {
-        return {icon:noNetworkIcon,statusMsg:'Sin conexión a la red'}
+      return { icon: noNetworkIcon, statusMsg: 'Sin conexión a la red' };
     }
+  }, [networkStatus, type]);
+
+  // Actualizar el estado de la red
+  useEffect(() => {
+    const connection = (navigator as NavigatorNetworkInformation).connection;
+    const updateNetworkStatus = () => {
+      console.log('Network status updated');
+      if (navigator.onLine) {
+        setNetworkStatus('connected');
+      } else {
+        setNetworkStatus('disconnected');
+      }
+    };
+
+    if (connection) {
+      window.addEventListener('online', updateNetworkStatus);
+      window.addEventListener('offline', updateNetworkStatus);
+      updateNetworkStatus();
+    } else {
+      const interval = setInterval(updateNetworkStatus, 1000);
+      return () => clearInterval(interval);
     }
-    ,[networkStatus,type])
 
-    // figure out the network status
-    useEffect(() => {
-        const connection = (navigator as NavigatorNetworkInformation).connection
-        const updateNetworkStatus = () => {
-            console.log("Network status updated")
-            if (navigator.onLine) {
-                setNetworkStatus('connected')
-            } else {
-                setNetworkStatus('disconnected')
-            }
-        }
+    return () => {
+      if (connection) {
+        window.removeEventListener('online', updateNetworkStatus);
+        window.removeEventListener('offline', updateNetworkStatus);
+      }
+    };
+  }, [setNetworkStatus]);
 
-        if (connection){
-            window.addEventListener('online', updateNetworkStatus)
-            window.addEventListener('offline', updateNetworkStatus)
-            updateNetworkStatus()
-        }else{
-            const interval = setInterval(updateNetworkStatus, 1000)
-            return () => clearInterval(interval)
-        }
+  const OpenModal = useCallback(() => {
+    ref.current?.showModal();
+  }, [ref]);
 
-        return () => {
-            if(connection){
-            window.removeEventListener('online', updateNetworkStatus)
-            window.removeEventListener('offline', updateNetworkStatus)
-            }
-        }
+  const CloseModal = useCallback(() => {
+    ref.current?.close();
+  }, [ref]);
 
-    }, [setNetworkStatus])
-
-    
-    const OpenModal =  useCallback(() => {
-        ref.current?.showModal();
-    }
-    ,[ref])
-
-    const CloseModal = useCallback(() => {
-        ref.current?.close();
-    } ,[ref])
-
-
-
-
-    return (
-        <>
-            <button onClick={OpenModal}>
-                <img src={icon} width='20' alt='Network'/>
-            </button>
-            <MemoDialog someRef={ref}
-                onClick={CloseModal}
-            >
-                <p>{statusMsg}</p>
-            </MemoDialog>
-        </>
-    )
+  return (
+    <>
+      <button onClick={OpenModal}>
+        <img src={icon} width="24" alt="Network" className="animate-pulse" />
+      </button>
+      <MemoDialog someRef={ref} onClick={CloseModal}>
+        <div className="p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg">
+          {statusMsg}
+        </div>
+      </MemoDialog>
+    </>
+  );
 }

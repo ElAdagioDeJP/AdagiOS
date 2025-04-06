@@ -6,10 +6,10 @@ import Time from './Time'
 export default function OSHeader() {
 
     return (
-        <header className='bg-slate-50 w-screen flex justify-between px-2 z-10'>
+        <header className='bg-sky-200 w-screen flex justify-between px-2 z-10 bg'>
             {/* Time format comes from settings, not statically typed */}
             <Time />
-            <p className='font-medium pointer-events-none'>VenecOS</p>
+            <p className='font-medium pointer-events-none'>AdagiOS</p>
             <div className='min-w-12 justify-between flex'>
                 <Network />
                 <Battery />
