@@ -9,12 +9,14 @@ AdagiOS nació de la pasión por entender cómo funcionan los sistemas operativo
   - Contiene el archivo `LICENSE` (MIT) y este `README.md`.  
   - Punto de entrada principal; aquí documentamos el proyecto.
 
-- **MobileOS**  
+- **MobileOS**
+  - https://adagiosmobile.netlify.app    
   - Versión “móvil” del simulador.  
   - Basada en Vite + TypeScript + Tailwind CSS.  
   - Su código fuente vive en `src/`, con configuración en `vite.config.ts`, `tailwind.config.js`, etc.
 
-- **DesktopOS**  
+- **DesktopOS**
+  - https://adagiosdesktop.netlify.app
   - Versión “desktop” del simulador.  
   - Desarrollada con Next.js 13 (app router) + Tailwind CSS.  
   - Contiene carpetas `app/`, `components/`, `hooks/`, `public/`, `styles/`, y config (`next.config.mjs`, `tailwind.config.ts`).
