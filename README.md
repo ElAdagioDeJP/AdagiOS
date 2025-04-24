@@ -49,15 +49,15 @@ AdagiOS nació de la pasión por entender cómo funcionan los sistemas operativo
    
    ```
    git checkout MobileOS
-   npm install
-   npm run dev
+   pnpm install
+   pnpm dev
    # Visita http://localhost:5173
    ```
 3. DesktopOS:
    ```
    git checkout DesktopOS
-   npm install
-   npm run dev
+   pnpm install
+   pnpm dev
    # Visita http://localhost:3000
    ```
 Si quieres regresar a la rama principal:
